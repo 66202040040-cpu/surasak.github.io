@@ -1,0 +1,172 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>โครงงานรายวิชา โปรแกรมสร้างภาพเคลื่อนไหว</title>
+        <link href="tooplate-inner-peace.css" rel="stylesheet">
+
+        <style>
+            /* จัดโลโก้ให้อยู่ตรงกลางและย่อขนาด */
+                .hero-content .logo {
+                display: block;
+                margin: 0 auto 20px; /* จัดกลาง + เว้นระยะด้านล่าง */
+                width: 160px;        /* ขนาดโลโก้ (ปรับได้ เช่น 80px, 100px, 150px) */
+                height: auto;        /* ป้องกันภาพบิด */
+                filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15)); /* เงานุ่ม ๆ เพิ่มความโดดเด่น */
+                transition: transform 0.3s ease;
+                }
+
+                /* เพิ่มเอฟเฟกต์ขยับเบา ๆ ตอนเอาเมาส์ชี้ */
+                .hero-content .logo:hover {
+                transform: scale(1.05);
+                }
+
+                /* จัดข้อความให้อยู่ตรงกลางด้วย */
+                .hero-content {
+                text-align: center;
+                }
+
+                .geometric-bg {
+                    background: none !important;
+                }
+
+                /* ถ้าอยู่ในกล่องหน่วยการเรียนรู้โดยเฉพาะ */
+                .feature-showcase {
+                    background: #6fa9c4c2 !important; /* หรือใช้สีพื้นหลังอื่นก็ได้ */
+                }
+
+        </style>
+
+    </head>
+    <body>
+        <div class="geometric-bg"></div>
+
+        <!-- Header -->
+        <header>
+            <nav>
+                <a href="#hero" class="logo">
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="url(#logoGradient)" stroke-width="2"/>
+                        <circle cx="20" cy="20" r="14" fill="none" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.7"/>
+                        <circle cx="20" cy="20" r="10" fill="none" stroke="url(#logoGradient)" stroke-width="1" opacity="0.5"/>
+                        <circle cx="20" cy="20" r="6" fill="none" stroke="url(#logoGradient)" stroke-width="0.5" opacity="0.3"/>
+                        <circle cx="20" cy="20" r="3" fill="url(#logoGradient)"/>
+                    </svg>
+
+                </a>
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">กลับหน้าแรก</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section with Enhanced Background -->
+        <section id="hero">
+            <!-- Network Background -->
+            <div class="network-bg">
+                <div class="network-line"></div>
+                <div class="network-line"></div>
+                <div class="network-line"></div>
+                <div class="network-line"></div>
+                <div class="network-line"></div>
+                <div class="network-line"></div>
+                <div class="network-line"></div>
+                <div class="network-line"></div>
+                <div class="network-dot"></div>
+                <div class="network-dot"></div>
+                <div class="network-dot"></div>
+                <div class="network-dot"></div>
+                <div class="network-dot"></div>
+                <div class="network-dot"></div>
+                <div class="network-dot"></div>
+                <div class="network-dot"></div>
+                <div class="network-dot"></div>
+                <div class="network-dot"></div>
+                <div class="network-dot"></div>
+                <div class="network-dot"></div>
+            </div>
+            
+            <div class="peace-bg">
+                <div class="breathing-circle"></div>
+                <div class="breathing-circle"></div>
+                <div class="breathing-circle"></div>
+                <div class="breathing-circle"></div>
+            </div>
+            <div class="floating-elements">
+                <div class="zen-stone"></div>
+                <div class="zen-stone"></div>
+                <div class="zen-stone"></div>
+            </div>
+            <div class="mandala-bg">
+                <div class="mandala-circle"></div>
+                <div class="mandala-circle"></div>
+                <div class="mandala-circle"></div>
+            </div>
+            <div class="hero-content">
+                <img src="images/SchoolLogo.png" alt="Logo" class="logo" />
+                <h1>โครงงานรายวิชา โปรแกรมสร้างภาพเคลื่อนไหว</h1>
+                <p>รหัสวิชา 21910-2014</p>
+                <!-- <a href="#about" class="cta-button">Begin Your Journey</a>   -->
+            </div>
+        </section>
+
+        <!-- About Section - Complete Redesign -->
+        <section id="about">
+            
+            <!-- Floating Cards Design -->
+            <div class="about-floating-cards">
+                <div class="floating-card">
+                    <div class="card-icon">
+                        <div class="icon-wrapper">📚</div>
+                    </div>
+                    <h3>บทเรียนที่ 1 ความหมาย ประเภท และ หลักการสร้างภาพเคลื่อนไหว</h3>
+                    <p></p>
+                        <ul class="feature-list">
+                        <li>
+                            <span class="feature-check">✓</span>
+                            <a href="https://sites.google.com/sic.ac.th/flashcs6/%E0%B8%AB%E0%B8%99%E0%B8%A7%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%A3%E0%B8%A2%E0%B8%99%E0%B8%A3/%E0%B8%9A%E0%B8%97%E0%B9%80%E0%B8%A3%E0%B8%A2%E0%B8%99%E0%B8%97-1-%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%AB%E0%B8%A1%E0%B8%B2%E0%B8%A2-%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A0%E0%B8%97-%E0%B9%81%E0%B8%A5%E0%B8%B0-%E0%B8%AB%E0%B8%A5%E0%B8%81%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B9%80%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%AB%E0%B8%A7" target="_blank">เนื้อหาบทเรียนที่ 1 </a>
+                        </li>
+                </div>
+                
+
+
+            <!-- Feature Showcase -->
+            <div class="feature-showcase">
+                <div class="showcase-content">
+                    <h3></h3>
+                    <ul class="feature-list">
+                        <li>
+                            <span class="feature-check">✓</span>
+                            <a href="https://forms.gle/DLmXMkKdwApPZuXq6" target="_blank">แบบทดสอบก่อนเรียน บทเรียนที่ 1 </a>
+                        </li>
+                        <li>
+                            <span class="feature-check">✓</span>
+                            <a href="https://forms.gle/Z2DF4xHuDVqzXb2PA" target="_blank">แบบทดสอบหลังเรียน บทเรียนที่ 1 </a>
+                        </li>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>&copy; 2025 Inner Peace. All rights reserved. Nurturing minds, one breath at a time. </a></p>
+                </div>
+            </div>
+        </footer>
+    <script src="tooplate-inner-peace-scripts.js"></script>
+    </body>
+    </html>
