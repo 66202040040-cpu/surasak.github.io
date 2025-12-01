@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>โครงงานรายวิชา โปรแกรมสร้างภาพเคลื่อนไหว</title>
+    <link href="tooplate-inner-peace.css" rel="stylesheet" />
+
+    <style>
+        /* =======================
+           Hero Section & Logo
+        ======================= */
+        .hero-content {
+            text-align: center;
+        }
+
+        .hero-content .logo {
+            display: block;
+            margin: 0 auto 20px;
+            width: 160px;
+            height: auto;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+            transition: 0.3s;
+        }
+
+        .hero-content .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* =======================
+           Floating Cards
+        ======================= */
+        .about-floating-cards .floating-card {
+            transform: none !important;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 40px;
+            background: linear-gradient(135deg, #ececec, #ececec);
+        }
+
+        .about-floating-cards .floating-card:hover {
+            transform: none !important;
+        }
+
+        /* =======================
+           Feature List (บทเรียน)
+        ======================= */
+        .feature-list li {
+            list-style: none;
+            background: #ffffffa8;
+            padding: 20px 18px;
+            margin: 10px 0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            border-left: 5px solid #4facfe;
+        }
+
+        .feature-list li:hover {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: #fff;
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border-left-color: #ffffff;
+        }
+
+        .feature-list li a {
+            display: block;
+            width: 100%;
+            text-decoration: none !important;
+            color: inherit;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* =======================
+           Score Section
+        ======================= */
+        .score-section {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .score-box {
+            padding: 30px;
+            background: #fff;
+            border-radius: 16px;
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid #4facfe;
+            transition: transform 0.3s ease;
+        }
+
+        .score-box:hover {
+            transform: translateY(-3px);
+        }
+
+        .score-box input[type="number"] {
+            padding: 12px;
+            width: 250px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 2px solid #4facfe;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .score-box input[type="number"]:focus {
+            border-color: #4facfe;
+            outline: none;
+        }
+
+        .score-box button {
+            padding: 12px 28px;
+            font-size: 18px;
+            border-radius: 8px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .score-box button:hover {
+            background-color: #2d8bf0;
+            transform: scale(1.05);
+        }
+
+        /* =======================
+           Marquee Text
+        ======================= */
+        #marqueeContainer {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            background: #4facfe;
+            color: #fff;
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        /* =======================
+           Misc
+        ======================= */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #f4f4f4;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .geometric-bg,
+        .overlay,
+        .floating-bg {
+            pointer-events: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="geometric-bg"></div>
+
+    <!-- =======================
+         Header & Navigation
+    ======================= -->
+    <header>
+        <nav>
+            <a href="#hero" class="logo"></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">กลับหน้าแรก</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- =======================
+         Hero Section
+    ======================= -->
+    <section id="hero">
+        <div class="hero-content">
+            <img src="images/SchoolLogo.png" class="logo" />
+            <h1>โครงงานรายวิชา โปรแกรมสร้างภาพเคลื่อนไหว</h1>
+            <p>รหัสวิชา 21910-2014</p>
+        </div>
+    </section>
+
+    <!-- =======================
+         Marquee / ข้อความเลื่อน
+    ======================= -->
+    <div id="marqueeContainer" style="width: 100%; overflow: hidden; background: #4facfe; color: #fff; padding: 10px 0; font-size: 18px; font-weight: bold; box-shadow: 0 3px 8px rgba(0,0,0,0.2); margin-bottom: 20px;">
+        <div id="marqueeText" style="display: inline-block; white-space: nowrap; padding-left: 100%;"></div>
+    </div>
+
+    <!-- =======================
+         About / Lessons
+    ======================= -->
+    <section id="about">
+        <div class="about-floating-cards">
+            <div class="floating-card">
+                <h3>บทเรียนที่ 1 ความหมาย ประเภท และ หลักการสร้างภาพเคลื่อนไหว</h3>
+                <ul class="feature-list">
+                    <li><a href="FB1.html" target="_blank">เนื้อหาบทเรียนที่ 1</a></li>
+                    <li><a href="https://forms.gle/DLmXMkKdwApPZuXq6" target="_blank">แบบทดสอบก่อนเรียน</a></li>
+                    <li><a href="https://forms.gle/DLmXMkKdwApPZuXq6" target="_blank">แบบทดสอบหลังเรียน</a></li>
+                    <li><a href="#" id="showScoreInput">เรียนต่อบทเรียนที่ 2</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================
+         Score Input Section
+    ======================= -->
+    <section class="score-section">
+        <div id="scoreAfterTest" class="score-box" style="display:none;">
+            <h3>โปรดกรอกคะแนนที่ได้จากการทดสอบหลังเรียน บทที่1</h3>
+            <input type="number" id="scoreInputAfter" placeholder="กรอกคะแนน" min="0" max="10">
+            <br>
+            <button onclick="checkScoreAfter()">ยืนยัน</button>
+        </div>
+    </section>
+
+    <!-- =======================
+         Footer
+    ======================= -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Inner Peace.</p>
+        </div>
+    </footer>
+
+    <!-- =======================
+         Scripts
+    ======================= -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // แสดงช่องกรอกคะแนนหลังเรียน
+        document.getElementById("showScoreInput").addEventListener("click", function(e){
+            e.preventDefault();
+            const scoreBox = document.getElementById("scoreAfterTest");
+            scoreBox.style.display = "block";
+
+            // เลื่อนหน้าไปยัง score box แบบ smooth
+            scoreBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // ตรวจสอบคะแนนและไปบทต่อไป
+        function checkScoreAfter() {
+            let score = document.getElementById("scoreInputAfter").value;
+
+            if(score === ""){
+                Swal.fire({
+                    icon: "warning",
+                    title: "กรุณากรอกคะแนน",
+                    confirmButtonText: "ปิด"
+                });
+                return;
+            }
+
+            if(score > 5){
+                Swal.fire({
+                    icon: "success",
+                    title: "สำเร็จ",
+                    text: "คุณผ่านบทที่ 1 แล้ว!",
+                    confirmButtonText: "ไปบทที่ 2",
+                    confirmButtonColor: "#4CAF50"
+                }).then(() => {
+                    window.location.href = "CT2.html";
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "ยังไม่ผ่าน",
+                    text: "กรุณาทบทวนบทเรียนอีกครั้ง",
+                    confirmButtonText: "ปิด"
+                });
+            }
+        }
+
+        // =======================
+        // Marquee Text
+        // =======================
+        const messages = [
+            "ยินดีต้อนรับสู่การเรียนรู้!",
+            "สนุกกับการสร้างภาพเคลื่อนไหว!",
+            "เรียนรู้ไปด้วยกัน!",
+            "พร้อมหรือยังที่จะเริ่มบทเรียน?",
+            "มาลองทำความเข้าใจภาพเคลื่อนไหวกัน!"
+        ];
+
+    const marqueeText = document.getElementById("marqueeText");
+
+    function setRandomMessage() {
+        const randomIndex = Math.floor(Math.random() * messages.length);
+        marqueeText.textContent = messages[randomIndex];
+    }
+
+    setRandomMessage();
+
+    // สลับทิศทางเลื่อนซ้าย-ขวา
+    let direction = "left"; // เริ่มเลื่อนจากขวาไปซ้าย
+
+    function startMarquee() {
+        let distance = 100; // เริ่มนอกจอ
+        const speed = 0.1; // ความเร็ว (ยิ่งน้อยยิ่งช้า)
+
+        function animate() {
+            if(direction === "left") distance -= speed;
+            else distance += speed;
+
+            marqueeText.style.transform = `translateX(${distance}%)`;
+
+            // ถ้าเลื่อนออกจอซ้าย -> เปลี่ยนทิศทาง
+            if(distance < -marqueeText.offsetWidth / window.innerWidth * 100) direction = "right";
+            // ถ้าเลื่อนออกจอขวา -> เปลี่ยนทิศทาง
+            if(distance > 100) {
+                direction = "left";
+                setRandomMessage(); // สุ่มข้อความใหม่
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    }
+
+    startMarquee();
+</script>
+</body>
+</html>
