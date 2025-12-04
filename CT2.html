@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>โครงงานรายวิชา โปรแกรมสร้างภาพเคลื่อนไหว</title>
+    <link href="tooplate-inner-peace.css" rel="stylesheet" />
+
+    <style>
+        /* =======================
+           Global
+        ======================= */
+        body {
+            font-family: 'Sarabun', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #000; /* สำรอง */
+        }
+
+        /* =======================
+           Particle Canvas Background
+        ======================= */
+        #particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #f4f4f4, #f4f4f4);
+        }
+
+        /* =======================
+           Page Animation
+        ======================= */
+        .main-content {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =======================
+           Hero / Logo
+        ======================= */
+        .hero-content {
+            text-align: center;
+        }
+
+        .hero-content .logo {
+            display: block;
+            margin: 0 auto 20px;
+            width: 160px;
+            height: auto;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+            transition: 0.3s;
+        }
+
+        .hero-content .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* =======================
+           Floating Cards
+        ======================= */
+        .about-floating-cards .floating-card {
+            transform: translateY(0);
+            opacity: 1;
+            transition: 0.8s ease;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 40px;
+            background: linear-gradient(135deg, #912fe262, #901ea759);
+        }
+
+        .floating-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =======================
+           Feature List
+        ======================= */
+        .feature-list li {
+            list-style: none;
+            background: #ffffffa8;
+            padding: 20px 18px;
+            margin: 10px 0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            border-left: 5px solid #c74ffe;
+        }
+
+        .feature-list li:hover {
+            background: linear-gradient(90deg, #af4ffe 0%, #fe00e9 100%);
+            color: #fff;
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border-left-color: #ffffff;
+        }
+
+        .feature-list li a {
+            display: block;
+            width: 100%;
+            text-decoration: none !important;
+            color: inherit;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* =======================
+           Score Section
+        ======================= */
+        .score-section {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .score-box {
+            padding: 30px;
+            background: #fff;
+            border-radius: 16px;
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid #4facfe;
+            transition: transform 0.3s ease;
+        }
+
+        .score-box:hover {
+            transform: translateY(-3px);
+        }
+
+        .score-box input[type="number"] {
+            padding: 12px;
+            width: 250px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 2px solid #4facfe;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .score-box input[type="number"]:focus {
+            border-color: #4facfe;
+            outline: none;
+        }
+
+        .score-box button {
+            padding: 12px 28px;
+            font-size: 18px;
+            border-radius: 8px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .score-box button:hover {
+            background-color: #2d8bf0;
+            transform: scale(1.05);
+        }
+
+        /* =======================
+           Bot Image + Marquee
+        ======================= */
+        .bot-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .bot-container img {
+            width: 100%;
+            max-width: 1920px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 3px 8px rgba(0,0,0,0.2));
+        }
+
+        .bot-marquee {
+            font-size: 16px;
+            color: #fff;
+            background-color: #c002fa;
+            padding: 5px 10px;
+            display: inline-block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #f4f4f4;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .geometric-bg, .overlay, .floating-bg {
+            pointer-events: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 🔥 Particle Background -->
+    <canvas id="particle-bg"></canvas>
+
+    <div class="main-content">
+        <div class="geometric-bg"></div>
+
+        <header>
+            <nav>
+                <a href="#hero" class="logo"></a>
+                <ul class="nav-links">
+                    <li><a href="CT1.html" class="nav-link">ย้อนกลับ</a></li>
+                    <li><a href="index.html" class="nav-link">กลับหน้าแรก</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Bot Image + Marquee -->
+        <div class="bot-container">
+            <img src="images/bot2.png" alt="bot image">
+            <marquee class="bot-marquee" scrollamount="4">
+                ถ้าศึกษาเสร็จแล้วลองทำแบบทดสอบเพื่อประเมิณความรู้ตัวเองกันด้วยน้าา
+            </marquee>
+        </div>
+
+        <!-- Lessons Section -->
+        <section id="about">
+            <div class="about-floating-cards">
+                <div class="floating-card">
+                    <h3>บทเรียนที่ 2 การสร้างภาพเคลื่อนไหว 2 มิติ ด้วยโปรแกรม Flash CS6</h3>
+                    <ul class="feature-list">
+                        <li><a href="FB2.html">เนื้อหาบทเรียนที่ 2</a></li>
+                        <li><a href="https://forms.gle/x6bFHDSn1mAjF8rf7" target="_blank">แบบทดสอบหลังเรียน</a></li>
+                        <li><a href="#" id="showScoreInput">เรียนต่อบทเรียนที่ 3</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Score Input -->
+        <section class="score-section">
+            <div id="scoreAfterTest" class="score-box" style="display:none;">
+                <h3>โปรดกรอกคะแนนที่ได้จากการทดสอบหลังเรียน บทที่2</h3>
+                <input type="number" id="scoreInputAfter" placeholder="กรอกคะแนน" min="0" max="10">
+                <br>
+                <button onclick="checkScoreAfter()">ยืนยัน</button>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Inner Peace.</p>
+        </footer>
+    </div>
+
+    <!-- =======================
+         Scripts
+    ======================= -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // Scroll Animation for Floating Cards
+        document.addEventListener("scroll", () => {
+            document.querySelectorAll(".floating-card").forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    card.classList.add("show");
+                }
+            });
+        });
+
+        // Show score input
+        document.getElementById("showScoreInput").addEventListener("click", function(e){
+            e.preventDefault();
+            const scoreBox = document.getElementById("scoreAfterTest");
+            scoreBox.style.display = "block";
+            scoreBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // Check score function
+        function checkScoreAfter() {
+            const score = document.getElementById("scoreInputAfter").value;
+
+            if(score === ""){
+                Swal.fire({
+                    icon: "warning",
+                    title: "กรุณากรอกคะแนน",
+                    confirmButtonText: "ปิด"
+                });
+                return;
+            }
+
+            if(score > 5){
+                Swal.fire({
+                    icon: "success",
+                    title: "สำเร็จ",
+                    text: "คุณผ่านบทที่ 2 แล้ว!",
+                    confirmButtonText: "ไปบทที่ 3",
+                    confirmButtonColor: "#4CAF50"
+                }).then(() => {
+                    window.location.href = "CT2.html";
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "ยังไม่ผ่าน",
+                    text: "กรุณาทบทวนบทเรียนอีกครั้ง",
+                    confirmButtonText: "ปิด"
+                });
+            }
+        }
+    </script>
+
+    <!-- 🔥 Particle Animation Script -->
+    <script>
+        const canvas = document.getElementById("particle-bg");
+        const ctx = canvas.getContext("2d");
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        let particles = [];
+        const total = 80;
+
+        for (let i = 0; i < total; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 3 + 1,
+                speedX: (Math.random() - 0.5) * 0.7,
+                speedY: (Math.random() - 0.5) * 0.7,
+                glow: Math.random() * 10 + 5
+            });
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(200, 80, 255, 0.8)";
+                ctx.shadowColor = "#ff4dff";
+                ctx.shadowBlur = p.glow;
+                ctx.fill();
+
+                p.x += p.speedX;
+                p.y += p.speedY;
+
+                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+    </script>
+</body>
+</html>

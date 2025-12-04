@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>โครงงานรายวิชา โปรแกรมสร้างภาพเคลื่อนไหว</title>
+    <link href="tooplate-inner-peace.css" rel="stylesheet" />
+
+    <style>
+        /* =======================
+           Hero Section & Logo
+        ======================= */
+        .hero-content {
+            text-align: center;
+        }
+
+        .hero-content .logo {
+            display: block;
+            margin: 0 auto 20px;
+            width: 160px;
+            height: auto;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+            transition: 0.3s;
+        }
+
+        .hero-content .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* =======================
+           Floating Cards
+        ======================= */
+        .about-floating-cards .floating-card {
+            transform: none !important;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 40px;
+            background: linear-gradient(135deg, #ececec, #ececec);
+        }
+
+        .about-floating-cards .floating-card:hover {
+            transform: none !important;
+        }
+
+        /* =======================
+           Feature List
+        ======================= */
+        .feature-list li {
+            list-style: none;
+            background: #ffffffa8;
+            padding: 20px 18px;
+            margin: 10px 0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            border-left: 5px solid #4facfe;
+        }
+
+        .feature-list li:hover {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: #fff;
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border-left-color: #ffffff;
+        }
+
+        .feature-list li a {
+            display: block;
+            width: 100%;
+            text-decoration: none !important;
+            color: inherit;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* =======================
+           Score Section
+        ======================= */
+        .score-section {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .score-box {
+            padding: 30px;
+            background: #fff;
+            border-radius: 16px;
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid #4facfe;
+            transition: 0.3s ease;
+        }
+
+        .score-box:hover { transform: translateY(-3px); }
+
+        .score-box input {
+            padding: 12px;
+            width: 250px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 2px solid #4facfe;
+            margin-bottom: 15px;
+        }
+
+        .score-box button {
+            padding: 12px 28px;
+            font-size: 18px;
+            border-radius: 8px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .score-box button:hover {
+            background-color: #2d8bf0;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =======================
+         Score Checker Box
+    ======================= -->
+    <section class="score-section">
+        <div class="score-box">
+            <h3>ตรวจสอบคะแนนจริงจากแบบทดสอบหลังเรียน</h3>
+            <input type="email" id="emailCheck" placeholder="กรอกอีเมลที่ใช้ทำแบบทดสอบ">
+            <br>
+            <button onclick="checkRealScore()">ตรวจสอบคะแนน</button>
+        </div>
+    </section>
+
+    <!-- =======================
+         JS
+    ======================= -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // ================================
+        // เปลี่ยน URL นี้เป็นของคุณเอง!!
+        // ================================
+        const apiURL = "https://script.google.com/macros/s/AKfycbykrqyHgMgXUqsBDw8sumOQsVtSiljabzaAh2GMw8t9DOdyWw-brmPFHglziZHRpGm4PQ/exec";  
+        // ตัวอย่าง: https://script.google.com/macros/s/AKfycbxxxxxx/exec
+        // =================================
+
+        function checkRealScore() {
+            const email = document.getElementById("emailCheck").value;
+
+            if (email === "") {
+                Swal.fire({
+                    icon: "warning",
+                    title: "กรุณากรอกอีเมล"
+                });
+                return;
+            }
+
+            fetch(`${apiURL}?email=${encodeURIComponent(email)}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "ok") {
+                        Swal.fire({
+                            icon: "success",
+                            title: "คะแนนของคุณ",
+                            text: `คุณได้คะแนน ${data.score} คะแนน`
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "ไม่พบข้อมูล",
+                            text: "ไม่พบคะแนนของอีเมลนี้ในระบบ"
+                        });
+                    }
+                })
+
+                .catch(err => {
+                    Swal.fire({
+                        icon: "error",
+                        title: "เกิดข้อผิดพลาด",
+                        text: "ระบบไม่สามารถเชื่อมต่อได้"
+                    });
+                });
+        }
+    </script>
+
+</body>
+</html>
