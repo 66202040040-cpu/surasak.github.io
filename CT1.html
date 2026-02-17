@@ -64,16 +64,15 @@
             display: inline-block;
         }
 
-        /* -------------------- 3. ABOUT CARD + LIST -------------------- */
+        /* -------------------- 3. ABOUT CARD + LIST --------------------             transform: translateY(0); */
         .about-floating-cards .floating-card {
-            transition: 0.8s ease;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-            border-radius: 15px;
-            padding: 40px;
-            background: linear-gradient(135deg, #2f68e262, #1e8ca759);
-            opacity: 1;
+            backdrop-filter: blur(12px);
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             transform: translateY(0);
         }
+
 
         .feature-list li {
             list-style: none;
@@ -139,6 +138,9 @@
             color: white;
             border: none;
             cursor: pointer;
+
+            margin-top: 15px;   /* 👈 เพิ่มบรรทัดนี้ */
+
         }
 
         /* -------------------- 5. BACK BUTTON -------------------- */
@@ -146,7 +148,7 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: #000;
+            background: radial-gradient(circle, #000a38, #000000);
             color: white;
             padding: 10px 18px;
             border-radius: 50px;
@@ -163,6 +165,26 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
 
+        .back-btn1 {
+            position: fixed;
+            top: 20px;
+            right: 155px;
+            background: #000000;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: 0.25s;
+            z-index: 9999;
+        }
+
+        .back-btn1:hover {
+            background: #2d8bf0;
+            transform: translateY(-2px);
+        }
+
         footer {
             text-align: center;
             padding: 20px 0;
@@ -170,7 +192,41 @@
             background: #f4f4f4;
             color: #555;
         }
+
+        .lesson-section {
+            
+            max-width: 1100px;   /* กำหนดความกว้างสูงสุด */
+            margin: 60px auto;   /* บนล่าง 60px / ซ้ายขวา auto = จัดกลาง */
+            padding: 0 20px;     /* กันชิดขอบจอในมือถือ */
         
+        }
+
+        .hero-text {
+            text-align: center;
+            color: rgb(0, 0, 0);
+            margin: 40px 0;
+        }
+
+        .hero-text h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+
+        .lesson-img {
+            width: 975px;
+            border-radius: 12px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
     </style>
 </head>
 
@@ -180,6 +236,7 @@
     <canvas id="particle-bg"></canvas>
 
     <!-- ปุ่มย้อนกลับ -->
+    <a href="#lesson2" class="back-btn1">บทเรียนที่ 2</a>
     <a href="index.html" class="back-btn">← ย้อนกลับ</a>
 
     <div class="main-content">
@@ -189,29 +246,47 @@
             <img id="botImage" src="images/bot1.png" alt="bot image">
 
             <marquee class="bot-marquee" scrollamount="4">
-                ถ้าศึกษาเสร็จแล้วลองทำแบบทดสอบเพื่อประเมิณความรู้ตัวเองกันด้วยน้าา
+                เมื่อศึกษาครบแล้ว มาทำแบบทดสอบกันหน่อย ว่าจำได้ครบแค่ไหน 💡
             </marquee>
         </div>
 
-        <!-- ----------- ส่วนเนื้อหา: บทเรียนที่ 1 ----------- -->
-        <section id="about">
+        <div class="hero-text">
+            <h1>โครงงานรายวิชา โปรแกรมสร้างภาพเคลื่อนไหว</h1>
+            <p>สื่อการออนไลน์ พร้อมแบบทดสอบและกิจกรรมท้ายบท</p>
+        </div>
+
+
+        <!-- ===== บทเรียนที่ 1 ===== -->
+        <section class="lesson-section">
             <div class="about-floating-cards">
                 <div class="floating-card">
-                    <h3>บทเรียนที่ 1 ความหมาย ประเภท และ หลักการสร้างภาพเคลื่อนไหว</h3>
+
+                    <img src="images/l1.png" class="lesson-img" alt="บทเรียนที่ 1">
 
                     <ul class="feature-list">
-                        <li><a href="FB1.html">เนื้อหาบทเรียนที่ 1</a></li>
-                        <li><a href="https://forms.gle/x6bFHDSn1mAjF8rf7" target="_blank">แบบทดสอบหลังเรียน</a></li>
-
-                        <!-- ----------- วิดีโอประกอบบทเรียน ----------- -->
-
-
-                        <!-- ปุ่มแสดงช่องกรอกคะแนน -->
-                        <li><a href="#" id="showScoreInput">เรียนต่อบทเรียนที่ 2</a></li>
+                        <li><a href="FB1.html">เรียนเนื้อหาบทเรียนที่ 1</a></li>
+                        <li><a href="#">แบบฝึกหัด บทที่ 1</a></li>
+                        <li><a href="#">แบบทดสอบหลังเรียน บทที่ 1</a></li>
                     </ul>
+
                 </div>
             </div>
         </section>
+
+        <section class="lesson-section" id="lesson2">
+            <div class="about-floating-cards">
+                <div class="floating-card">
+
+                    <h3>บทเรียนที่ 2 การสร้างภาพเคลื่อนไหว 2 มิติ ด้วยโปรแกรม Flash CS6</h3>
+
+                    <ul class="feature-list">
+                        <li><a href="#" class="showScoreBtn">เรียนต่อบทเรียนที่ 2</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </section>
+
 
 
         <!-- ----------- ส่วนกรอกคะแนน ----------- -->
@@ -245,12 +320,15 @@
         });
 
         /* -------------------- B. เปิดกล่องกรอกคะแนนบทที่ 1 -------------------- */
-        document.getElementById("showScoreInput").addEventListener("click", function(e){
-            e.preventDefault();
-            const scoreBox = document.getElementById("scoreAfterTest");
-            scoreBox.style.display = "block";
-            scoreBox.scrollIntoView({ behavior: 'smooth' });
+        document.querySelectorAll(".showScoreBtn").forEach(btn => {
+            btn.addEventListener("click", function(e){
+                e.preventDefault();
+                const scoreBox = document.getElementById("scoreAfterTest");
+                scoreBox.style.display = "block";
+                scoreBox.scrollIntoView({ behavior: 'smooth' });
+            });
         });
+
 
         /* -------------------- C. ตรวจสอบคะแนน + ไปบทที่ 2 -------------------- */
         function checkScoreAfter() {
@@ -287,56 +365,6 @@
             img.style.opacity = Math.max(0.4, Math.min(1, opacity));
         });
 
-        /* -------------------- E. Particle Background Effect -------------------- */
-        const canvas = document.getElementById("particle-bg");
-        const ctx = canvas.getContext("2d");
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener("resize", resize);
-        resize();
-
-        const particleColor = "#4facfe";
-        const particleGlowColor = "#00f2fe";
-
-        let particles = [];
-        const total = 80;
-
-        for (let i = 0; i < total; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 3 + 1,
-                speedX: (Math.random() - 0.5) * 0.7,
-                speedY: (Math.random() - 0.5) * 0.7,
-                glow: Math.random() * 10 + 5
-            });
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            particles.forEach(p => {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-
-                ctx.fillStyle = particleColor;
-                ctx.shadowColor = particleGlowColor;
-                ctx.shadowBlur = p.glow;
-                ctx.fill();
-
-                p.x += p.speedX;
-                p.y += p.speedY;
-
-                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-            });
-
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
     </script>
 
 </body>
